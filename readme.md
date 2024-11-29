@@ -2,61 +2,62 @@
 
 ## Disclaimer
 
-This project was conducted in a controlled, simulated environment created for educational and demonstration purposes. All data, configurations, and credentials shown are part of a test lab and do not reflect any real-world production systems. Sensitive information such as passwords, usernames, and network configurations have been simulated and do not represent actual systems.
+This project was conducted in a simulated environment designed for educational purposes. All configurations, credentials, and network setups are fictional and not tied to any real-world systems. Sensitive details have been redacted or simulated to ensure safety.
 
 ## Objective
 
-This project focused on setting up a virtualized Active Directory environment with Kali Linux and Splunk to simulate attacks, monitor security events, and analyze logs. It aimed to demonstrate Active Directory management, simulate credential-based attacks, and log analysis using Splunk.
+This lab focused on setting up a virtualized environment with multiple VMs to simulate and analyze security events. The goal was to understand Active Directory management, simulate a brute-force attack, and analyze logs to detect malicious activity. This hands-on approach provided a deeper understanding of security monitoring and event analysis.
+
+## Tools Used
+
+- **VirtualBox**: Hosted and managed the virtual machines.
+- **Windows Server 2022**: Configured as an Active Directory Domain Controller (VM1).
+- **Splunk Server**: Used for ingesting and analyzing logs (VM2).
+- **Kali Linux**: Used to simulate attacks and test security (VM3).
+- **Additional Clean VM**: Included to maintain network integrity for testing purposes (VM4).
 
 ## Steps
 
 ### Step 1: Setting Up the Virtual Network
 
-Configured multiple virtual machines (Kali Linux, Splunk, and Active Directory Domain Controller) within the same NAT network to facilitate communication.
+The lab consisted of four VMs: a Domain Controller (Windows Server 2022), a Splunk server, a Kali Linux machine, and an additional clean VM for testing. All VMs were configured to communicate within the same NAT network, named "AD-Project."
 
 **Screenshot:** `4-vms-within-the-same-network.png`  
 ![VMS Network](4-vms-within-the-same-network.png)  
-_The network settings for the Kali Linux VM are shown, connected to the "AD-Project" NAT network._
+_The VirtualBox network setup showing all four VMs connected within the same NAT network._
 
 ---
 
 ### Step 2: Configuring Active Directory
 
-Created and managed users and organizational units in the Active Directory Domain Controller. A user account `jbenipal` was added under the appropriate organizational unit.
+Active Directory was set up on the Domain Controller (VM1) with a new domain, `myfir.local`. Organizational units like HR and IT were created, and a test user, `jbenipal`, was added under the HR unit to simulate an employee account.
 
 **Screenshot:** `jagraj-benipal-in-ad.png`  
 ![AD User Management](jagraj-benipal-in-ad.png)  
-_Active Directory Users and Computers showing the structure and the user `jbenipal` under the HR organizational unit._
+_Active Directory Users and Computers showing the user `jbenipal` added under the HR unit._
 
 ---
 
 ### Step 3: Simulating an RDP Brute-Force Attack
 
-Using the Kali Linux VM, performed an RDP brute-force attack with the `Crowbar` tool to compromise the `jbenipal` account credentials.
+Using the Kali Linux VM (VM3), an RDP brute-force attack was simulated with the `Crowbar` tool against the Domain Controller. The attack successfully compromised the `jbenipal` account, revealing the password `password123`. This demonstrated how attackers exploit weak credentials.
 
 **Screenshot:** `kali-linux-jbenipal-credentials-hacked.png`  
 ![RDP Attack Simulation](kali-linux-jbenipal-credentials-hacked.png)  
-_The successful brute-force attack against the `jbenipal` user account is shown, revealing the password._
+_The successful brute-force attack revealing the `jbenipal` credentials._
 
 ---
 
 ### Step 4: Analyzing Logs with Splunk
 
-Configured Splunk to ingest security event logs from the Active Directory Domain Controller. Queried the logs to identify the successful brute-force attack and the compromised user account activity.
+Splunk (VM2) was configured to collect security event logs from the Domain Controller. Queries were run to trace the attack, identifying the compromised `jbenipal` account and its associated logon activity. This exercise highlighted the importance of centralized log monitoring for detecting malicious behavior.
 
 **Screenshot:** `splunk-shows-search-results.png`  
 ![Splunk Log Analysis](splunk-shows-search-results.png)  
-_Splunk search results displaying security event logs, showing the compromised `jbenipal` account activity._
+_Splunk search results showing security logs for the compromised `jbenipal` account._
 
 ---
 
-## Tools Used
-
-- **VirtualBox**: For virtualization of the environment.
-- **Windows Server 2022**: As the Active Directory Domain Controller.
-- **Kali Linux**: For simulating credential attacks.
-- **Splunk**: For monitoring and analyzing security event logs.
-
 ## Conclusion
 
-This project demonstrated the practical implementation of an Active Directory environment, simulated credential-based attacks, and log analysis using Splunk. It provided hands-on experience in attack detection, user management in Active Directory, and event monitoring in a secure network.
+This project involved setting up and managing a multi-VM environment, simulating credential-based attacks, and analyzing logs using Splunk. By combining Active Directory management, attack simulation, and log monitoring, the lab provided valuable insights into detecting and responding to security incidents in a networked environment.
