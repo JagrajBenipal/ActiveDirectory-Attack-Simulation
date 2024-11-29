@@ -21,7 +21,7 @@ The first step was creating a virtual NAT network to connect all four VMs. I con
 ---
 
 ### Step 2: Configuring Active Directory
-I installed and configured Active Directory on the Domain Controller (VM1). I created a new domain, `myfir.local`, and set up organizational units like HR and IT to mirror a realistic corporate structure. I also added a test user, `jbenipal`, under the HR unit to simulate an employee account.
+I installed and configured Active Directory on the Domain Controller (VM1). I created a new domain, `mydfir.local`, and set up organizational units like HR and IT to mirror a realistic corporate structure. I also added a test user, `jbenipal`, under the HR unit to simulate an employee account.
 
 ![AD User Management](jagraj-benipal-in-ad.png)  
 *Active Directory Users and Computers showing the user `jbenipal` added to the HR organizational unit.*
@@ -44,5 +44,11 @@ To understand the attack better, I configured Splunk (VM2) to collect security e
 
 ---
 
+## Acknowledgments
+This project was inspired by Steven's work and is based on a part of his larger project. The implementation and adjustments reflect my own understanding and learning process.
+
+---
+
 ## Conclusion
 This project was a great learning experience. Setting up and managing a multi-VM environment, simulating a credential-based attack, and using Splunk for log analysis helped me better understand how to detect and respond to security incidents. Logging in as the compromised user added realism to the simulation and reinforced the importance of strong credentials and proactive monitoring in protecting critical systems.
+
